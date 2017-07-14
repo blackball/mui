@@ -28,7 +28,6 @@ main(int argc, char *argv[]) {
     mui::Button btn_exit, btn_darkit, btn_lightit;
     mui::Label label, label_edit, label_mui;
     mui::ImageLabel imglabel;
-    mui::ImageLabel camlabel;
     mui::CheckBox checkbox_one;
     mui::RadioBox radiobox_male;
     mui::RadioBox radiobox_female;
