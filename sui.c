@@ -17,6 +17,8 @@
  **  Summary :  Frameless minimum image window library based on Xlib directly.
  **  Author  :  Hui Li (bugway / gmail.com)
  **  Created :  2017-07-01
+ **  Notes   :  The keycode to ascii mapping LUT is manually created,
+ **             it will be different in different settings. Need to fix.
  **
  ***********************************************************************/
 
@@ -352,7 +354,7 @@ sui_show(Sui *ui, const unsigned char *imgdata, int w, int h, int ws, int cn) {
             return -1;
         }
     }
-    // TODO(Hui): do nothing, better return values ? 
+    // TODO(Hui): do nothing, return meaningful codes ?
     return -1;
 }
 
