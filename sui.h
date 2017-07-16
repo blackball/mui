@@ -22,7 +22,7 @@
  **             much as possible.
  **
  **  TODO    :  Combined with https://github.com/blackball/gui to support
- **             Windows system.
+ **             Windows systems.
  **
  ***********************************************************************/
 

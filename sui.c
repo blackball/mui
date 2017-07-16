@@ -188,7 +188,6 @@ typedef struct Sui {
     XExposeEvent expose_event;
 } Sui;
 
-
 static XExposeEvent
 sui_create_exposeevent(Sui *ui, int x, int y, int w, int h) {
     XExposeEvent e;
