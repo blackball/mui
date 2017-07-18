@@ -4,7 +4,7 @@ Mui
 
 Mouse oriented ui library, which maintains a few states for each widget for squeezing the performance.It's very close to IMGUI, but with minimum states maintained to avoid unnecessary rendering.
 
-Creating UI with Mui is very fast (check out demo.cpp, ~50 loc), customizing or writing your own widgets is very easy (check out widget implementations in mui.h).
+Creating UI with Mui is very fast (check out demo.cpp), customizing or writing your own widgets is very easy (check out widget implementations in mui.h).
 
 
 ![alt demo](mui.png)

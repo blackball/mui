@@ -181,12 +181,16 @@ struct Font
 
 struct Screen
 {
-    Screen(int w, int h, int mode = 0) {        
+    Screen(){}    
+    Screen(int w, int h, int mode = 0) {  init(w,h,mode); }
+    
+    int init(int w, int h, int mode = 0) {
         color  = 0x1E2027;
         width  = w;
         height = h;
         bg = Mat(Size(w, h), CV_8UC3, toScalar(color));
 #if defined(USE_SUI)
+        if (sui) sui_destroy(&sui);
         sui = sui_create(w, h, mode);
         sui_setcallback(sui, &mouseCallback, NULL);
 #else 
@@ -195,6 +199,7 @@ struct Screen
         cv::setMouseCallback(wname, &mouseCallback, NULL);
         cv::setWindowProperty(wname, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
 #endif
+        return 0;
     }
     
 #if defined(USE_SUI)
