@@ -76,9 +76,9 @@ struct UI
         
             rangebox(screen, app.range, 0.f, 100.f, 1.0f, 30, 420, dog.cols, 25);  
             checkbox_one(screen, "One", app.boxChecked, 330, 300, 100, 25);
-            radiobox_male  (screen, app.radioId, 1, "Male",   330, 340, 100, 25); 
-            radiobox_female(screen, app.radioId, 2, "Female", 330, 380, 100, 25);
-            radiobox_animal(screen, app.radioId, 3, "Animal", 330, 420, 100, 25);
+            radiobox_male  (screen, "Male",   1, app.radioId, 330, 340, 100, 25); 
+            radiobox_female(screen, "Female", 2, app.radioId, 330, 380, 100, 25);
+            radiobox_animal(screen, "Animal", 3, app.radioId, 330, 420, 100, 25);
         
             lineh(screen, 1, 5, 535, 450, 535);
             linev(screen, 1, 440, 5, 440, 545);        

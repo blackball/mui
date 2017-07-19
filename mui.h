@@ -444,7 +444,7 @@ struct CheckBox
 
 struct RadioBox : CheckBox
 {    
-    int operator() (Screen &screen, int &checkedId, const int uid, const string &text, int x, int y, int w, int h) {
+    int operator() (Screen &screen, const string &text, const int uid, int &checkedId, int x, int y, int w, int h) {
         const Rect roi(x,y,w,h);
         const bool cc = checkedId == uid;
         const int s = disabled ? DISABLED : mouseStatus(roi, IDLE|CLICKED);
