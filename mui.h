@@ -249,7 +249,8 @@ struct Button
         align    = ALIGN_CENTER;
         disabled = false; // disable the component 
     }
-    
+
+    void reset() {status = INIT; disabled = false;}
     void disable(bool v){disabled = v;}
     void redraw() {status = CHANGED;}
     
@@ -359,6 +360,7 @@ struct ImageLabel
         color = 0x33353C;
     }
 
+    void reset() {status = INIT; disabled = false;}
     void disable(bool v){disabled = v;}
     void redraw() {status = CHANGED;}
         
@@ -393,7 +395,8 @@ struct CheckBox
         inner_color = 0x2670AF;
         align = ALIGN_LEFT;
     }
-    
+
+    void reset() {status = INIT; disabled = false;}
     void disable(bool v){disabled = v;}
     void redraw() {status = CHANGED;}
 
@@ -500,7 +503,8 @@ struct Line {
         color = 0x33353C;
         color = 0x303030;
     }
-    
+
+    void reset() {status = INIT; disabled = false;}
     void disable(bool v){disabled = v;}
     void redraw() {status = CHANGED;}
     
@@ -606,6 +610,15 @@ private:
 #undef PUTBUTTON
     }
 
+    
+    void reset() {
+        textLabel.reset();
+        for (int i = 0; i < 40; ++i) {
+            b[i].status = INIT;
+            b[i].disable = false;
+        }
+    }
+    
     uint color;
     int startX, startY;
     int btnSize, btnGap;
