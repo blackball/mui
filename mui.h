@@ -181,8 +181,17 @@ struct Font
 
 struct Screen
 {
-    Screen(){sui = NULL;}    
-    Screen(int w, int h, int mode = 0) { sui = NULL; init(w,h,mode); }
+    Screen() {
+#if defined(USE_SUI)
+        sui = NULL;
+#endif
+    }    
+    Screen(int w, int h, int mode = 0) {
+#if defined(USE_SUI)
+        sui = NULL;
+#endif
+        init(w,h,mode);
+    }
     
     int init(int w, int h, int mode = 0) {
         color  = 0x1E2027;
@@ -615,7 +624,7 @@ private:
         textLabel.reset();
         for (int i = 0; i < 40; ++i) {
             b[i].status = INIT;
-            b[i].disable = false;
+            b[i].disabled = false;
         }
     }
     
