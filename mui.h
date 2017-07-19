@@ -222,8 +222,8 @@ struct Screen
         cv::moveWindow(wname, nx, ny);
 #endif
     }
-    void clear() {bg = color;}
-    void clear(const Rect &roi) {bg(roi) = color;}
+    void clear() {bg = toScalar(color);}
+    void clear(const Rect &roi) {bg(roi) = toScalar(color);}
     
     int show(int ms = 20) {
 #if defined(USE_SUI)
