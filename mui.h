@@ -408,7 +408,7 @@ struct CheckBox
     void disable(bool v){disabled = v;}
     void redraw() {status = CHANGED;}
 
-    int operator()(Screen &screen, const string &text, int x, int y, int w, int h) {
+    int operator()(Screen &screen, const string &text, bool &isChecked, int x, int y, int w, int h) {
         const Rect roi(x, y, w, h);
         const int s = disabled ? DISABLED : mouseStatus(roi, IDLE | CLICKED);        
         if (s != status) {
@@ -421,10 +421,10 @@ struct CheckBox
             area = screen.bg(roi);
             area = toScalar(color);  
             rectangle(area, outer, s == DISABLED ? color_disabled : outer_color, outer_size);
-            if (checked) fill(area, inner, s == DISABLED ? color_disabled : inner_color);
-            
-            font.putText(area, fontArea, text, s == DISABLED, align);
-        }
+            if (checked) fill(area, inner, s == DISABLED ? color_disabled : inner_color);            
+            font.putText(area, fontArea, text, s == DISABLED, align);            
+        }        
+        isChecked = checked;
         return status;
     }
         
