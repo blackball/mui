@@ -584,7 +584,15 @@ struct Keyboard
         copyTo(prevKBRoiImg, area);
         return IDLE;
     }
-    
+
+    void reset() {
+        textLabel.reset();
+        for (int i = 0; i < 40; ++i) {
+            b[i].status = INIT;
+            b[i].disabled = false;
+        }
+    }
+
 private:
     inline void K(const string &text) {
         const int r = keyId / 10, c = keyId % 10;        
@@ -616,15 +624,6 @@ private:
         
         ++keyId;
 #undef PUTBUTTON
-    }
-
-    
-    void reset() {
-        textLabel.reset();
-        for (int i = 0; i < 40; ++i) {
-            b[i].status = INIT;
-            b[i].disabled = false;
-        }
     }
     
     uint color;
