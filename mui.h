@@ -421,8 +421,8 @@ struct CheckBox
             const Rect fontArea(outer.x + outer.width + 3, outer.y, w - outer.width - 4, outer.height);                        
             area = screen.bg(roi);
             area = toScalar(color);  
-            rectangle(area, outer, s == DISABLED ? color_disabled : outer_color, outer_size);
-            if (checked) fill(area, inner, s == DISABLED ? color_disabled : inner_color);
+            rectangle(area, outer, toScalar(s == DISABLED ? color_disabled : outer_color), outer_size);
+            if (checked) fill(area, inner, toScalar(s == DISABLED ? color_disabled : inner_color));
             
             font.putText(area, fontArea, text, s == DISABLED, align);
         }
@@ -461,8 +461,8 @@ struct RadioBox : CheckBox
 
             area = screen.bg(roi);
             area = toScalar(color);            
-            circle(area, center, outer_radius, s == DISABLED ? color_disabled : outer_color, outer_size);
-            if (checked) fill(area, center, inner_radius, s == DISABLED ? color_disabled : inner_color);
+            circle(area, center, outer_radius, toScalar(s == DISABLED ? color_disabled : outer_color), outer_size);
+            if (checked) fill(area, center, inner_radius, toScalar(s == DISABLED ? color_disabled : inner_color));
             font.putText(area, fontArea, text, s == DISABLED, align);            
         }
         return status;
@@ -521,7 +521,7 @@ struct Line {
         int s = disabled ? DISABLED : IDLE;
         if (s != status) {
             status = s;
-            line(screen.bg, Point(x0, y0), Point(x1, y1), s == DISABLED ? color_disabled : color, thickness);
+            line(screen.bg, Point(x0, y0), Point(x1, y1), toScalar(s == DISABLED ? color_disabled : color), thickness);
         }
         return status;
     }
