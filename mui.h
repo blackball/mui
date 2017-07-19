@@ -658,7 +658,7 @@ struct MessageBox
         reset();
         area = screen.bg(roi);
         cloneTo(area, prevRoiImg);
-        area(Rect(2, 2, w-4, 141)) = toScalar(0x454643);
+        area(Rect(2, 2, w-4, 143)) = toScalar(0x161616);
         while (1) {
             msgLabel(screen, msg, x+3, y+3, w-6, 60);            
             if (okBtn(screen, "OK", x+3, y+80+3, w-6, 60) == CLICKED) break;            
