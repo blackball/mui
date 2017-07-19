@@ -75,7 +75,7 @@ struct UI
             }
         
             rangebox(screen, app.range, 0.f, 100.f, 1.0f, 30, 420, dog.cols, 25);  
-            checkbox_one(screen, "One", 330, 300, 100, 25); app.boxChecked = checkbox_one.checked;
+            checkbox_one(screen, "One", app.boxChecked, 330, 300, 100, 25);
             radiobox_male  (screen, app.radioId, 1, "Male",   330, 340, 100, 25); 
             radiobox_female(screen, app.radioId, 2, "Female", 330, 380, 100, 25);
             radiobox_animal(screen, app.radioId, 3, "Animal", 330, 420, 100, 25);

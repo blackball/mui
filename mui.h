@@ -355,7 +355,7 @@ cloneTo(const Mat &src, Mat &dst) {
         dst = src.clone();
     }
     else if (dst.type() == src.type() && src.size() == dst.size()) {
-        src.copyTo(src, dst);
+        src.copyTo(dst);
     }
     else ASSERT(0);
 }
@@ -365,7 +365,7 @@ struct ImageLabel
     ImageLabel() {
         status = INIT;
         disabled = false;
-        color = 0x33353C;
+        color = 0x202020;
     }
 
     void reset() {status = INIT; disabled = false;}
@@ -560,9 +560,8 @@ struct Keyboard
         entered = false;
         inputPtr = &input;
         screenPtr = &screen;
-        // reset all button's
-        for (int i = 0; i < 40; ++i) b[i].status = INIT;
-        textLabel.status = INIT;
+        
+        reset();
         
         while (!entered) {
             if (CLICKED == textLabel(screen, input, startX, startY, kbroi.width-2, btnSize)-2) {
@@ -580,7 +579,7 @@ struct Keyboard
                 break;
             }
         }
-            
+        
         copyTo(prevKBRoiImg, area);
         return IDLE;
     }
@@ -638,6 +637,43 @@ private:
     int keyId; 
     Button b[40];
     Mat area, prevKBRoiImg;
+};
+
+struct MessageBox
+{
+    MessageBox() {
+        status = INIT;
+        msgLabel.font.color = 0xE3D567;
+        msgLabel.font.scale = 0.7f;
+    }
+
+    void reset() {
+        status = INIT;
+        msgLabel.reset();
+        okBtn.reset();
+    }
+
+    int operator()(Screen &screen, const string &msg, int x, int y, int w, int h) {
+        const Rect roi(x,y,w,h);
+        reset();
+        area = screen.bg(roi);
+        cloneTo(area, prevRoiImg);
+        area(Rect(2, 2, w-4, 141)) = toScalar(0x454643);
+        while (1) {
+            msgLabel(screen, msg, x+3, y+3, w-6, 60);            
+            if (okBtn(screen, "OK", x+3, y+80+3, w-6, 60) == CLICKED) break;            
+            if (27 == screen.show()) break;
+        }        
+        copyTo(prevRoiImg, area);
+        return 0;
+    }
+
+private:
+    int status;
+    uint color;
+    Label msgLabel;
+    Button okBtn;
+    Mat area, prevRoiImg;
 };
 
 } // namespace mui 
