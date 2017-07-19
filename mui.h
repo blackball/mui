@@ -181,8 +181,8 @@ struct Font
 
 struct Screen
 {
-    Screen(){}    
-    Screen(int w, int h, int mode = 0) {  init(w,h,mode); }
+    Screen(){sui = NULL;}    
+    Screen(int w, int h, int mode = 0) { sui = NULL; init(w,h,mode); }
     
     int init(int w, int h, int mode = 0) {
         color  = 0x1E2027;
