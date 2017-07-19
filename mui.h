@@ -114,7 +114,6 @@ toScalar(uint v) {
     return Scalar(v & 0xFF, (v >> 8) & 0xFF, (v >> 16) & 0xFF);
 }
 
-
 static void
 circle(Mat &area, const Point center, int radius, uint color, int size = 1) {
     cv::circle(area, center, radius, toScalar(color), size, CV_AA);
@@ -421,8 +420,8 @@ struct CheckBox
             const Rect fontArea(outer.x + outer.width + 3, outer.y, w - outer.width - 4, outer.height);                        
             area = screen.bg(roi);
             area = toScalar(color);  
-            rectangle(area, outer, toScalar(s == DISABLED ? color_disabled : outer_color), outer_size);
-            if (checked) fill(area, inner, toScalar(s == DISABLED ? color_disabled : inner_color));
+            rectangle(area, outer, s == DISABLED ? color_disabled : outer_color, outer_size);
+            if (checked) fill(area, inner, s == DISABLED ? color_disabled : inner_color);
             
             font.putText(area, fontArea, text, s == DISABLED, align);
         }
@@ -461,8 +460,8 @@ struct RadioBox : CheckBox
 
             area = screen.bg(roi);
             area = toScalar(color);            
-            circle(area, center, outer_radius, toScalar(s == DISABLED ? color_disabled : outer_color), outer_size);
-            if (checked) fill(area, center, inner_radius, toScalar(s == DISABLED ? color_disabled : inner_color));
+            circle(area, center, outer_radius, s == DISABLED ? color_disabled : outer_color, outer_size);
+            if (checked) fill(area, center, inner_radius, s == DISABLED ? color_disabled : inner_color);
             font.putText(area, fontArea, text, s == DISABLED, align);            
         }
         return status;
@@ -510,7 +509,7 @@ struct Line {
         status = INIT;
         disabled = false;
         color = 0x33353C;
-        color = 0x303030;
+        color_disabled = 0x303030;
     }
 
     void reset() {status = INIT; disabled = false;}
@@ -521,7 +520,7 @@ struct Line {
         int s = disabled ? DISABLED : IDLE;
         if (s != status) {
             status = s;
-            line(screen.bg, Point(x0, y0), Point(x1, y1), toScalar(s == DISABLED ? color_disabled : color), thickness);
+            line(screen.bg, Point(x0, y0), Point(x1, y1), s == DISABLED ? color_disabled : color, thickness);
         }
         return status;
     }
