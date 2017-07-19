@@ -145,9 +145,9 @@ struct Font
     Font() {
         color          = 0xE3E3E3;
         color_disabled = colorAdd(color, -0xA3);
-        type       = cv::FONT_HERSHEY_SIMPLEX;
+        type           = cv::FONT_HERSHEY_SIMPLEX;
         AA             = CV_AA;
-        scale      = 0.45f;
+        scale          = 0.45f;
     }
     
     Point getTextPosition(const string &text, const Rect &roi, int align) {
@@ -379,7 +379,7 @@ struct ImageLabel
         if (s != status) {
             status = s; 
             area = screen.bg(roi);
-            if (img.empty()) area = color;
+            if (img.empty()) area = toScalar(color);
             else copyTo(img, area, &buff);
         }
         return status;
