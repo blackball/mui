@@ -145,14 +145,14 @@ struct Font
     Font() {
         color          = 0xE3E3E3;
         color_disabled = colorAdd(color, -0xA3);
-        fontType       = cv::FONT_HERSHEY_SIMPLEX;
+        type       = cv::FONT_HERSHEY_SIMPLEX;
         AA             = CV_AA;
-        fontScale      = 0.45f;
+        scale      = 0.45f;
     }
     
     Point getTextPosition(const string &text, const Rect &roi, int align) {
         Point pos;
-        const Size tsz = cv::getTextSize(text, fontType, fontScale, 1, NULL);
+        const Size tsz = cv::getTextSize(text, type, scale, 1, NULL);
         pos.y = roi.y + (roi.height + tsz.height)/2 - 1;
         switch(align) {
         case ALIGN_LEFT:  pos.x =  roi.x + 1; break;
@@ -165,7 +165,7 @@ struct Font
     void putText(Mat &area, const Rect &roi, const string &text, bool disabled = false, int align = ALIGN_CENTER) {
         const uint c = disabled ? color_disabled : color;
         const Point pos = getTextPosition(text, roi, align);
-        cv::putText(area, text, pos, fontType, fontScale, toScalar(c), 1, AA);
+        cv::putText(area, text, pos, type, scale, toScalar(c), 1, AA);
     }
     
     void putText(Mat &area, const string &text, bool disable = false, int align = ALIGN_CENTER) {
@@ -174,9 +174,9 @@ struct Font
     
     int color;
     int color_disabled;
-    int fontType;
+    int type;
     int AA;
-    float fontScale;    
+    float scale;    
 };
 
 struct Screen

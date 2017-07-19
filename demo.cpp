@@ -44,7 +44,7 @@ struct UI
         screen.init(850, 550);        
         dog = cv::imread("dog.png", 1);                
         screen.move(50, 50);    
-        label_mui.font.fontScale = 2.4f;
+        label_mui.font.scale = 2.4f;
         label_mui.disable(true); 
     }
     

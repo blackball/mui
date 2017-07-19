@@ -167,7 +167,7 @@ static void
 set_frameless_or_fullscreen(Display *dpy, Window win, int mode) {
     if (mode == 1) { 
         Atom atoms[2] = { XInternAtom(dpy, "_NET_WM_STATE_FULLSCREEN", 0), None };
-        XChangeProperty(dpy, win, XInternAtom(dpy, "_NET_WM_STATE", 0), 4, 32, PropModeReplace, (unsigned char *)atoms, 1);        
+        XChangeProperty(dpy, win, XInternAtom(dpy, "_NET_WM_STATE", 0), 4, 32, PropModeReplace, (unsigned char *)atoms, 1);
     }
     else {
         Atom mwmHintsProperty = XInternAtom(dpy, "_MOTIF_WM_HINTS", 0);
