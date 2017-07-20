@@ -37,7 +37,7 @@
 #include <assert.h>
 #define ASSERT(expr) assert(expr);
 #endif
-
+#include <stdio.h>
 #include <stdint.h>
 #include <string>
 #include <stdarg.h>
