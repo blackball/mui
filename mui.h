@@ -539,13 +539,14 @@ struct Keyboard
         char_disabled = false;
         entered = false;
         textLabel.color = colorAdd(color, -10);
+        maxLen = 32;
     }
     
     int operator() (Screen &screen, std::string &input, int x, int y, int w, int type=KB_FULL, int maxlen = 32) {
         btnGap = (int)(w * 0.1f * 0.1f);
         btnSize = (int)((w + btnGap) * 0.1f - btnGap);
         const Rect kbroi(x, y, 10*(btnSize + btnGap) - btnGap + 2, 5*(btnSize + btnGap) - 2 * btnGap + 2);
-
+        
         switch(type) {
         case KB_FULL: num_disabled = false; char_disabled = false; break;
         case KB_NUM:  num_disabled = false; char_disabled = true; break;
@@ -560,7 +561,7 @@ struct Keyboard
         entered = false;
         inputPtr = &input;
         screenPtr = &screen;
-        
+        maxLen = maxlen;
         reset();
         
         while (!entered) {
@@ -601,7 +602,7 @@ private:
         
         if (keyId != 29 && keyId != 39) {
             b[keyId].disable(keyId < 10 ? num_disabled : char_disabled);
-            if (CLICKED == PUTBUTTON(b[keyId])) {
+            if (CLICKED == PUTBUTTON(b[keyId]) && inputPtr->size() < maxLen) {
                 inputPtr->append(text);
                 textLabel.redraw();
             }
@@ -637,6 +638,7 @@ private:
     int keyId; 
     Button b[40];
     Mat area, prevKBRoiImg;
+    int maxLen;
 };
 
 struct MessageBox
